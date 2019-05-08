@@ -1,3 +1,8 @@
+com/sunquan/glf/services/RedisService.class
+com/sunquan/glf/intercepors/RecordIntercepor.class
+com/sunquan/glf/beans/Clients.class
 com/sunquan/glf/controller/ViewController.class
+com/sunquan/glf/configbeans/DefaulView.class
+com/sunquan/glf/configbeans/WebConfig.class
 com/sunquan/glf/AppStars.class
 com/sunquan/glf/SpringBootStartApplication.class

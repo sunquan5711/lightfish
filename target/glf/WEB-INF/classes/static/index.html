@@ -4,16 +4,20 @@
 
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link rel="icon" type="image/x-icon" href="favicon.ico" />
+
 </head>
 <body>
+
+    <title>孙权的技术实践站点</title>
 <header>
     <h1> Wellcome to Go - lightfish</h1>
 </header>
 
 <nav>
-    冷知识<br>
-    技术文章<br>
-    神奇生物<br>
+    <span id="user">用户管理</span><br>
+    <span id="Trivia">冷知识</span><br>
+    <span id="technology">技术文章</span><br>
+    <span id="living">神奇生物</span><br>
 </nav>
 
 <section>
@@ -32,6 +36,7 @@
 
 
 <style>
+
 header {
     background-color:black;
     color:white;
@@ -45,7 +50,10 @@ nav {
     height:300px;
     width:100px;
     float:left;
-    padding:5px;
+    padding:0.5em;
+}
+nav span {
+    margin:5en;
 }
 section {
     width:350px;
@@ -60,6 +68,32 @@ footer {
     padding:5px;
 }
 </style>
+
+    <script>
+
+    window.onload = function(){
+
+        var val = document.getElementById('living')
+        val.onclick = function(){
+        var title = document.getElementsByTagName('title')[0]
+        title.innerText = 'living'
+        }
+    }
+
+
+
+        var getPage = function(){
+
+
+        }
+
+
+
+        var f1 = function(){
+
+            return 'seccuess'
+        }
+    </script>
 
 </body>
 </html>

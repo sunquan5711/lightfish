@@ -1,4 +1,8 @@
 /home/sunquan/IdeaProjects/golightfish/src/main/java/com/sunquan/glf/controller/ViewController.java
+/home/sunquan/IdeaProjects/golightfish/src/main/java/com/sunquan/glf/services/RedisService.java
 /home/sunquan/IdeaProjects/golightfish/src/main/java/com/sunquan/glf/configbeans/DefaulView.java
 /home/sunquan/IdeaProjects/golightfish/src/main/java/com/sunquan/glf/AppStars.java
 /home/sunquan/IdeaProjects/golightfish/src/main/java/com/sunquan/glf/SpringBootStartApplication.java
+/home/sunquan/IdeaProjects/golightfish/src/main/java/com/sunquan/glf/configbeans/WebConfig.java
+/home/sunquan/IdeaProjects/golightfish/src/main/java/com/sunquan/glf/intercepors/RecordIntercepor.java
+/home/sunquan/IdeaProjects/golightfish/src/main/java/com/sunquan/glf/beans/Clients.java
