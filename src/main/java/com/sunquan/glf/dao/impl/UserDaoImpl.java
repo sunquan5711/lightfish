@@ -5,6 +5,7 @@ import com.sunquan.glf.dao.UserDao;
 import com.sunquan.glf.support.Support;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -14,7 +15,7 @@ import java.util.concurrent.locks.ReentrantLock;
 public class UserDaoImpl implements UserDao {
 
     public User getUserById(String userId) {
-        String userJson = (String)redisTemplate.opsForValue().get(userId);
+        String userJson = (String)valueOperations.get(userId);
 
         return Support.json2Object(userJson,User.class);
     }
@@ -30,7 +31,7 @@ public class UserDaoImpl implements UserDao {
             所以完全采用redis做数据库的话，一切都采用纯粹的字符串存储，这样就使得很多复杂关系的查询不能或很难实现
              */
             String userJson = Support.object2Json(user);
-            redisTemplate.opsForValue().set(user.getUserId(),userJson);
+            valueOperations.set(user.getUserId(),userJson);
             return true;
         }catch (Exception e){
             e.printStackTrace();
@@ -41,8 +42,15 @@ public class UserDaoImpl implements UserDao {
 
     }
 
+    public boolean addUserToUserList(User user) {
+
+        return false;
+    }
+
     @Autowired
     private RedisTemplate redisTemplate;
+
+    private ValueOperations<String, String> valueOperations = redisTemplate.opsForValue();
 
     private ReentrantLock lock = new ReentrantLock();
 }

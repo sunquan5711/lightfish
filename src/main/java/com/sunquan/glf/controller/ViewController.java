@@ -14,7 +14,7 @@ import java.util.Date;
 @RestController
 public class ViewController {
 
-    @RequestMapping("/testredis")
+    @RequestMapping(value = "/testredis")
     public String index(HttpServletRequest request){
 
         User user = User.createUserWithId();
