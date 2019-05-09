@@ -28,7 +28,5 @@ public class RedisService {
         }
     }
 
-    public void getAll(){
 
-    }
 }

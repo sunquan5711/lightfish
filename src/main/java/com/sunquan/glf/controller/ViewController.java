@@ -1,14 +1,14 @@
 package com.sunquan.glf.controller;
 
-import com.sunquan.glf.services.RedisService;
+import com.sunquan.glf.beans.User;
+import com.sunquan.glf.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 
 @RestController
@@ -17,25 +17,26 @@ public class ViewController {
     @RequestMapping("/testredis")
     public String index(HttpServletRequest request){
 
-        String key = "users";
-        List<Map<String,String>> userList = new ArrayList<Map<String,String>>();
-        Map<String,String> user1 = new HashMap<String, String>();
-        user1.put("name","winger");
-        user1.put("gender","M");
-        user1.put("isLiving","Y");
+        User user = User.createUserWithId();
+        user.setAge(20);
+        user.setDataOfBirth(new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
+        user.setFirstName("孙");
+        user.setLastName("权");
+        user.setPhoneNum("18760274687");
 
-        Map<String,String> user2 = new HashMap<String, String>();
-        user2.put("name","ann");
-        user2.put("gender","F");
-        user2.put("isLiving","Y");
-        userList.add(user1);
-        userList.add(user2);
+        boolean re = userService.addUser(user);
 
+        if(re)
+            return "当前的用户已经增加成功，用户ID是："+user.getUserId();
+        else
+            return "添加失败";
+    }
 
-        boolean res = redisService.set(key,userList.toString());
-        return "secuss";
+    @RequestMapping("/getUser/{userId}")
+    public User getUser(@PathVariable String userId){
+        return userService.getUserById(userId);
     }
 
     @Autowired
-    private RedisService redisService;
+    private UserService userService;
 }
