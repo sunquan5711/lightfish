@@ -1,4 +1,4 @@
-package com.sunquan.glf.beans;
+package com.sunquan.glf.domain;
 
 import com.sunquan.glf.support.Support;
 import lombok.AllArgsConstructor;

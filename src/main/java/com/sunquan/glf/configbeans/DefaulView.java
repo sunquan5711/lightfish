@@ -19,6 +19,7 @@ public class DefaulView {
         redisTemplate.setValueSerializer(stringSerializer);
         redisTemplate.setHashKeySerializer(stringSerializer);
         redisTemplate.setHashValueSerializer(stringSerializer);
+        redisTemplate.setEnableTransactionSupport(true);
         return redisTemplate;
     }
 

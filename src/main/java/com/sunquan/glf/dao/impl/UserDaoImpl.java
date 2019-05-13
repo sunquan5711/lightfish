@@ -1,27 +1,25 @@
 package com.sunquan.glf.dao.impl;
 
-import com.sunquan.glf.beans.User;
+import com.sunquan.glf.dao.CommonDao;
+import com.sunquan.glf.domain.User;
 import com.sunquan.glf.dao.UserDao;
 import com.sunquan.glf.support.Support;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Repository;
-
 import java.util.List;
-import java.util.concurrent.locks.ReentrantLock;
 
 @Repository
-public class UserDaoImpl implements UserDao {
+public class UserDaoImpl extends CommonDao<User> implements UserDao {
 
     public User getUserById(String userId) {
+        ValueOperations<String, String> valueOperations = redisTemplate.opsForValue();
         String userJson = (String)valueOperations.get(userId);
 
         return Support.json2Object(userJson,User.class);
     }
 
     public boolean addUser(User user) {
-
+        ValueOperations<String, String> valueOperations = redisTemplate.opsForValue();
         lock.lock();
 
         try {
@@ -42,15 +40,21 @@ public class UserDaoImpl implements UserDao {
 
     }
 
-    public boolean addUserToUserList(User user) {
+    /**
+     * 将用户添加到某一类集合当中
+     * @param key
+     * @param user
+     * @return
+     */
+    public boolean addUserToTypeList(String key, User user) {
 
-        return false;
+        return super.addEleToTypeList(key,user);
     }
 
-    @Autowired
-    private RedisTemplate redisTemplate;
+    public List<User> getUserListByType(String key) {
 
-    private ValueOperations<String, String> valueOperations = redisTemplate.opsForValue();
+        return super.getListByTypeKey(key);
+    }
 
-    private ReentrantLock lock = new ReentrantLock();
+
 }
