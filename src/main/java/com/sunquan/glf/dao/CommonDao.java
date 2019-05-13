@@ -16,8 +16,8 @@ public class CommonDao<T> {
     public boolean addEleToTypeList(String listKey, T t){
 
         try {
-
-            redisTemplate.opsForList().leftPush(listKey, Support.object2Json(t));
+            String tJson = Support.object2Json(t);
+            redisTemplate.opsForList().leftPush(listKey, tJson);
             return true;
         }catch (Exception e){
             e.printStackTrace();

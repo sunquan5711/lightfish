@@ -19,6 +19,7 @@ public class UserDaoImpl extends CommonDao<User> implements UserDao {
     }
 
     public boolean addUser(User user) {
+
         ValueOperations<String, String> valueOperations = redisTemplate.opsForValue();
         lock.lock();
 

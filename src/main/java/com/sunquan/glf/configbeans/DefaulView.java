@@ -23,4 +23,10 @@ public class DefaulView {
         return redisTemplate;
     }
 
+//    //配置事务
+//    @Bean
+//    public PlatformTransactionManager transactionManager(DataSource dataSource) throws SQLException {
+//        return new DataSourceTransactionManager(dataSource);
+//    }
+
 }
