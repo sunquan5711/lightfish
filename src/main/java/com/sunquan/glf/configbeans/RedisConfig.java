@@ -8,7 +8,7 @@ import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 
 @Configuration
-public class DefaulView {
+public class RedisConfig {
 
     @Bean
     public RedisTemplate redisTemplate(RedisConnectionFactory factory) {
@@ -22,11 +22,5 @@ public class DefaulView {
         redisTemplate.setEnableTransactionSupport(true);
         return redisTemplate;
     }
-
-//    //配置事务
-//    @Bean
-//    public PlatformTransactionManager transactionManager(DataSource dataSource) throws SQLException {
-//        return new DataSourceTransactionManager(dataSource);
-//    }
 
 }

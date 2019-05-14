@@ -3,9 +3,8 @@ package com.sunquan.glf.controller;
 import com.sunquan.glf.domain.User;
 import com.sunquan.glf.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
 import javax.servlet.http.HttpServletRequest;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -33,12 +32,12 @@ public class UserController {
             return "添加失败";
     }
 
-    @RequestMapping("/getUser/{userId}")
+    @GetMapping("/getUser/{userId}")
     public User getUser(@PathVariable String userId){
         return userService.getUserById(userId);
     }
 
-    @RequestMapping("/getAllUser")
+    @GetMapping("/getAllUser")
     public List<User> getAllUser(){
         return userService.getAllUser();
     }

@@ -1,6 +1,5 @@
 package com.sunquan.glf.dao;
 
-import com.sunquan.glf.domain.User;
 import com.sunquan.glf.support.Support;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.ListOperations;
@@ -46,11 +45,8 @@ public class CommonDao<T> {
 
 
     @Autowired
-    public RedisTemplate redisTemplate;
+    public  RedisTemplate redisTemplate;
 
     public ReentrantLock lock = new ReentrantLock();
 
-    //public ValueOperations<String, String> valueOperations = redisTemplate.opsForValue();
-//
-//    public ListOperations<String, T> listOperations = redisTemplate.opsForList();
 }

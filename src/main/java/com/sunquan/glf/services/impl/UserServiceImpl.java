@@ -1,5 +1,6 @@
 package com.sunquan.glf.services.impl;
 
+import com.sunquan.glf.annotation.RedisTransaction;
 import com.sunquan.glf.constant.DataBaseListKeyName;
 import com.sunquan.glf.domain.User;
 import com.sunquan.glf.dao.UserDao;
@@ -14,6 +15,7 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
 
 
+    @RedisTransaction
     public boolean addUser(User user) {
         //手动开启事务，这样凑合可以保证原子性，需要将这个方法抽取成通知，我想一想怎么搞
         redisTemplate.multi();
