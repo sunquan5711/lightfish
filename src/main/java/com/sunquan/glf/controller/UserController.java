@@ -15,7 +15,7 @@ import java.util.List;
 public class UserController {
 
     @RequestMapping(value = "/add_user")
-    public String add_user(HttpServletRequest request){
+    public String add_user(HttpServletRequest request) throws Exception {
 
         User user = User.createUserWithId();
         user.setAge(20);
@@ -33,12 +33,12 @@ public class UserController {
     }
 
     @GetMapping("/getUser/{userId}")
-    public User getUser(@PathVariable String userId){
+    public User getUser(@PathVariable String userId) throws Exception {
         return userService.getUserById(userId);
     }
 
     @GetMapping("/getAllUser")
-    public List<User> getAllUser(){
+    public List<User> getAllUser() throws Exception {
         return userService.getAllUser();
     }
 

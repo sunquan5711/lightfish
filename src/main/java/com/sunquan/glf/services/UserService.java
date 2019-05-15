@@ -6,9 +6,9 @@ import java.util.List;
 
 public interface UserService {
 
-    public boolean addUser(User user);
+    public boolean addUser(User user) throws Exception;
 
-    public User getUserById(String userId);
+    public User getUserById(String userId) throws Exception;
 
-    public List<User> getAllUser();
+    public List<User> getAllUser() throws Exception;
 }

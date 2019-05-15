@@ -11,14 +11,14 @@ import java.util.List;
 @Repository
 public class UserDaoImpl extends CommonDao<User> implements UserDao {
 
-    public User getUserById(String userId) {
+    public User getUserById(String userId) throws Exception{
         ValueOperations<String, String> valueOperations = redisTemplate.opsForValue();
         String userJson = (String)valueOperations.get(userId);
 
         return Support.json2Object(userJson,User.class);
     }
 
-    public boolean addUser(User user) {
+    public boolean addUser(User user) throws Exception{
 
         ValueOperations<String, String> valueOperations = redisTemplate.opsForValue();
         lock.lock();
@@ -47,12 +47,12 @@ public class UserDaoImpl extends CommonDao<User> implements UserDao {
      * @param user
      * @return
      */
-    public boolean addUserToTypeList(String key, User user) {
+    public boolean addUserToTypeList(String key, User user) throws Exception{
 
         return super.addEleToTypeList(key,user);
     }
 
-    public List<User> getUserListByType(String key) {
+    public List<User> getUserListByType(String key) throws Exception{
 
         return super.getListByTypeKey(key);
     }

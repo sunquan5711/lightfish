@@ -16,23 +16,18 @@ public class UserServiceImpl implements UserService {
 
 
     @RedisTransaction
-    public boolean addUser(User user) {
-        //手动开启事务，这样凑合可以保证原子性，需要将这个方法抽取成通知，我想一想怎么搞
-        redisTemplate.multi();
+    public boolean addUser(User user) throws Exception{
+
         boolean isSuccess = userDao.addUser(user)&&userDao.addUserToTypeList(DataBaseListKeyName.ALL_USER,user);
-        if(!isSuccess){
-            redisTemplate.discard();
-            return false;
-        }
-        redisTemplate.exec();
-        return true;
+
+        return isSuccess;
     }
 
-    public User getUserById(String userId) {
+    public User getUserById(String userId) throws Exception{
         return userDao.getUserById(userId);
     }
 
-    public List<User> getAllUser() {
+    public List<User> getAllUser() throws Exception{
 
         List<User> userList = userDao.getUserListByType(DataBaseListKeyName.ALL_USER);
 
@@ -43,6 +38,4 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserDao userDao;
 
-    @Autowired
-    private RedisTemplate redisTemplate;
 }
